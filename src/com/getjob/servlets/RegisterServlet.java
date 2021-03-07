@@ -1,4 +1,4 @@
-package com.getjob.controllers;
+package com.getjob.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,14 +19,14 @@ import com.getjob.database.DBConnection;
  * Servlet implementation class LoginController
  */
 @WebServlet("/register/submit")
-public class RegisterController extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 	private PreparedStatement pstmt = null;
 	private Connection con = null;
 	private static final long serialVersionUID = 1L;
        
-    public RegisterController() {
+    public RegisterServlet() {
 		try {
 			con = DBConnection.getConnection();
 		} catch (Exception e) {
@@ -51,18 +51,22 @@ public class RegisterController extends HttpServlet {
 				name = request.getParameter("name");
 				pstmt.setString(1, request.getParameter("name"));
 			}
+			
 			if(request.getParameter("email") != null) {
 				email = request.getParameter("email");
 				pstmt.setString(2, request.getParameter("email"));
 			}
+			
 			if(request.getParameter("password") != null) {
 				password = request.getParameter("password");
 				pstmt.setString(3, request.getParameter("password"));
 			}
+			
 			if(request.getParameter("phone") != null) {
 				phone = request.getParameter("phone");
 				pstmt.setString(4, request.getParameter("phone"));
 			}
+			
 			if(request.getParameter("age") != null) {
 				age = Integer.valueOf(request.getParameter("age"));
 				pstmt.setInt(5, Integer.valueOf(request.getParameter("age")));
@@ -89,7 +93,7 @@ public class RegisterController extends HttpServlet {
 			return status;
 			
 		} catch (SQLException e) {
-			System.out.println("Error Catch Message While Executing from getstudent in createJob: " + e.getMessage());
+			System.out.println("Error Catch Message While Executing from getstudent in createUser: " + e.getMessage());
 			return false;
 		}
 	}

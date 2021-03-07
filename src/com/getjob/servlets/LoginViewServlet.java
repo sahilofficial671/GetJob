@@ -1,4 +1,4 @@
-package com.getjob.controllers;
+package com.getjob.servlets;
 
 import java.io.IOException;
 
@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LoginViewController
  */
-@WebServlet("/register")
-public class RegisterViewController extends HttpServlet {
+@WebServlet("/login")
+public class LoginViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterViewController() {
+    public LoginViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +28,7 @@ public class RegisterViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("pages/register.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("pages/login.jsp");
 		rd.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

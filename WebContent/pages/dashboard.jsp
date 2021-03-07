@@ -1,27 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<jsp:include page="../components/headerStyles.jsp" />
-<meta charset="ISO-8859-1">
-<title>Get Job | Getjob.com</title>
-</head>
-	<body>
-		<div class="container m-5">
-			<div style="width: 100%;max-width: 330px;margin: 0 auto;">
-				<jsp:include page="../components/alert.jsp" />
-				<div class="card">
-				  <div class="card-header">
-				    User Dashboard
-				  </div>
-				  <div class="card-body">
-					You're logged in.
-					<a href="./logout" class="btn btn-danger">Logout</a>
-				  </div>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<t:app>
+	<jsp:attribute name="body">
+		<div class="container mt-5 mb-5">
+			<div class="row">
+				<div class="col-sm-12">
+					<jsp:include page="../components/alert.jsp" />
+				</div>
+			</div>
+			<div class="row menu-tab">
+				<div class="col-sm-2">
+					<a href="${pageContext.request.contextPath}/jobs" class="tab">
+						<div class="tab-title d-flex justify-content-between">
+							<div class="tab-head">Total Jobs</div>
+							<div class="tab-value">20</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-2">
+					
+				</div>
+				<div class="col-sm-2">
+
+				</div>
+					
+				<div class="col-sm-6">
+					<div>
+						<div class="card mb-5">
+						  <div class="card-header">
+						    Create Job
+						  </div>
+						  <div class="card-body">
+							<form action="${pageContext.request.contextPath}/jobs/submit" method="post">
+							  <div class="mb-3">
+							    <label for="title" class="form-label">Title *</label>
+							    <input type="text" class="form-control" id="title" name="title" required>
+							  </div>
+							  <div class="mb-3"> 
+							    <label for="description" class="form-label">Description *</label>
+							    <input type="text" class="form-control" id="description" name="description" required>
+							  </div>
+  				   			  <div class="mb-3">
+							    <label for="company" class="form-label">Company</label>
+							    <input type="text" class="form-control" id="company" name="company">
+							  </div>
+   				   			  <div class="mb-3">
+							    <label for="location" class="form-label">Location</label>
+							    <input type="text" class="form-control" id="location" name="location">
+							  </div>
+				  			  <div class="mb-3">
+							    <label for="salary_offered" class="form-label">Salary Offered</label>
+							    <input type="number" class="form-control" id="salary_offered" name="salary_offered" required>
+							  </div>
+							  <div class="mb-3">
+							    <label for="min_exp" class="form-label">Minimum Experience *</label>
+							    <input type="number" class="form-control" name="min_exp" id="min_exp" required>
+							  </div>
+  							  <div class="mb-3">
+							    <label for="max_exp" class="form-label">Maximum Experience *</label>
+							    <input type="number" class="form-control" name="max_exp" id="max_exp" required>
+							  </div>
+							  <button type="submit" class="btn btn-primary">Submit</button>
+							</form>
+						  </div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../components/footer.jsp" />
-	</body>
-</html>
+	</jsp:attribute>
+</t:app>

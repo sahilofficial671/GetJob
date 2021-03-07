@@ -1,32 +1,24 @@
 <%
 if(request.getSession().getAttribute("status") != null){
-	if(request.getSession().getAttribute("status").equals("success")){
-		%>
-			<div class="alert alert-success" role="alert">
-						<% out.print(request.getSession().getAttribute("message")); %>
-			</div>
-		<%
-	}
-	if(request.getSession().getAttribute("status").equals("error")){
-		%>
-			<div class="alert alert-danger" role="alert">
-						<% out.print(request.getSession().getAttribute("message")); %>
-			</div>
-		<%
-	}
-	if(request.getSession().getAttribute("status").equals("warning")){
-		%>
-			<div class="alert alert-warning" role="alert">
-						<% out.print(request.getSession().getAttribute("message")); %>
-			</div>
-		<%
-	}
-	if(request.getSession().getAttribute("status").equals("info")){
-		%>
-			<div class="alert alert-primary" role="alert">
-						<% out.print(request.getSession().getAttribute("message")); %>
-			</div>
-		<%
-	}
-}
+	
+	String alert_type;
+    switch(request.getSession().getAttribute("status").toString()) 
+    { 
+        case "success": 
+        	alert_type = "success";
+            break; 
+        case "warning": 
+        	alert_type = "warning";
+            break; 
+        case "info": 
+        	alert_type = "info"; 
+            break; 
+        default: 
+        	alert_type = "danger";
+    }
 %>
+	<div class="alert alert-<%=alert_type %> alert-dismissible" role="alert">
+		<% out.print(request.getSession().getAttribute("message")); %>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<% } %>

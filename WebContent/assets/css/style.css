@@ -1,0 +1,115 @@
+@charset "ISO-8859-1";
+:root{
+	--default-bg-color:rgb(69 161 255 / 12%);
+	--primary-bg-color: #0d6efd;
+	
+	--default-text-color: #212529;
+	--default-border:1px solid rgba(0,0,0,.125);
+	--default-border-color:rgba(0,0,0,.125);
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+.card-header{
+    background-color: rgb(69 161 255 / 12%);
+}
+.navbar-transparent {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+}
+
+@media(min-width:767px) {
+    .navbar {
+        padding: 20px 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+    }
+}
+
+/* Demo Sections - You can use these as guides or delete them - the scroller will work with any sort of height, fixed, undefined, or percentage based.
+The padding is very important to make sure the scrollspy picks up the right area when scrolled to. Adjust the margin and padding of sections and children 
+of those sections to manage the look and feel of the site. */
+
+.intro-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #fff;
+}
+
+.about-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #eee;
+}
+
+.services-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #fff;
+}
+
+.contact-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #eee;
+}
+
+.jobs-container .job{
+    background: #fefefe;
+    padding: 6px 19px;
+    border-bottom: 1px solid var(--default-border-color);
+}
+.job .delete{
+	color: #fff;
+}
+
+.job .content .block-2{
+	text-align: right;
+}
+
+.right .dropdown-menu[data-bs-popper]{
+    left: -130px;
+}
+.menu-tab .tab{
+	text-decoration: none;
+}
+.menu-tab .tab .tab-title{
+    background: var(--default-bg-color);
+    border: var(--default-border);
+    padding: 10px;
+    border-radius: 5px;
+}
+.menu-tab .tab .tab-title .tab-head{
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    color: var(--default-text-color);
+}
+.menu-tab .tab .tab-title .tab-value{
+	background: var(--primary-bg-color);
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 7px;
+    float: right;
+}
+.menu-tab .tab{
+	display:block;
+}
+.menu-tab .tab:hover{
+	box-shadow: 1px 1px 20px 0px rgb(225 225 225 / 45%);
+}

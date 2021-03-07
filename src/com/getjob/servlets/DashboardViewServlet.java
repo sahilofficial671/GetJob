@@ -1,4 +1,4 @@
-package com.getjob.controllers;
+package com.getjob.servlets;
 
 import java.io.IOException;
 
@@ -9,18 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.getjob.model.User;
+
 /**
  * Servlet implementation class LoginViewController
  */
 @WebServlet("/dashboard")
-public class DashboardViewController extends HttpServlet {
+public class DashboardViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashboardViewController() {
-
+    public DashboardViewServlet() {
+    	
     }
 
 	/**
@@ -44,5 +46,4 @@ public class DashboardViewController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
