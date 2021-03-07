@@ -13,11 +13,11 @@ import com.getjob.model.Job;
 
 
 @WebServlet("/jobs/submit")
-public class JobServlet extends HttpServlet {
+public class JobSubmitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JobController jobController;
        
-    public JobServlet() {
+    public JobSubmitServlet() {
 		jobController = new JobController();
     }
 

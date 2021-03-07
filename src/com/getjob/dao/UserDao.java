@@ -13,9 +13,10 @@ public interface UserDao {
 	Boolean delete(User user);
 	User getUser(Integer id);
 	List<User> getUsers();
-	
+
 	// Auth
 	Boolean validateLogin(HttpServletRequest request);
+	Boolean checkAuth(HttpServletRequest request);
 	Boolean authenticate(HttpServletRequest request);
 	Boolean bindUserToSession(HttpServletRequest request, ResultSet rs);
 	User getAuthUser(Integer id);

@@ -134,4 +134,15 @@ public class UserController implements UserDao {
 		return null;
 	}
 
+	@Override
+	public Boolean checkAuth(HttpServletRequest request) {
+		if(request.getSession().getAttribute("logged") != null && (boolean) request.getSession().getAttribute("logged")) {
+			return true;
+		}
+		request.getSession().setAttribute("status", "error");
+		request.getSession().setAttribute("message", "Please log in first.");
+		request.getSession().setAttribute("redirect_to", request.getRequestURI());
+		return false;
+	}
+
 }

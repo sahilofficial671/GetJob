@@ -8,14 +8,15 @@
       <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="${pageContext.request.contextPath}/jobs">Jobs</a>
+            <a class="nav-link active" href="${pageContext.request.contextPath}">Jobs</a>
           </li>
           <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            Recruiters
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/dashboard">Add Job</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/recruiter/job/add">Add Job</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/recruiter/jobs">View Added Job</a></li>
 	          </ul>
 	        </li>
         </ul>

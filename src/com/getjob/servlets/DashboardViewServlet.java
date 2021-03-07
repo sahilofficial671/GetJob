@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.getjob.model.User;
+import com.getjob.controllers.UserController;
 
 /**
  * Servlet implementation class LoginViewController
@@ -29,14 +29,13 @@ public class DashboardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("logged") != null && (boolean) request.getSession().getAttribute("logged")) {
-			RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
-			rd.forward(request, response);
-		}else {
-			request.getSession().setAttribute("status", "error");
-			request.getSession().setAttribute("message", "Please log in first.");
-			response.sendRedirect("./login");
-		}
+		if(!new UserController().checkAuth(request)) {
+			response.sendRedirect(request.getContextPath()+"/login");
+			return ;
+		}		
+		
+		RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

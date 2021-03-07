@@ -1,6 +1,7 @@
 package com.getjob.servlets.job;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.getjob.controllers.JobController;
+import com.getjob.controllers.UserController;
 
 /**
  * Servlet implementation class JobDeleteServlet
@@ -27,6 +29,12 @@ public class JobDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(!new UserController().checkAuth(request)) {
+			response.sendRedirect(request.getContextPath()+"/login");
+			return ;
+		}
+		
 		String message = "";
 		String alert_status = "";
 		

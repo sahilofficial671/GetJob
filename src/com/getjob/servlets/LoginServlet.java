@@ -41,6 +41,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(login(request)) {
+			if(request.getSession().getAttribute("redirect_to") != null) {
+				String redirect_to = (String)request.getSession().getAttribute("redirect_to");
+				request.getSession().setAttribute("redirect_to", null);
+				response.sendRedirect(redirect_to);
+				return ;
+			}
+			
 			response.sendRedirect(request.getContextPath()+"/dashboard");
 		}else {
 			response.sendRedirect("../");
