@@ -3,6 +3,6 @@
  + Features: 
    - User Login/Logout
    - User Register
-   - Add Job
-   - View Jobs
-   - Delete Job
+   - Recruiter - Add Job
+   - Recruiter - View Jobs
+   - Recruiter - Delete Job
