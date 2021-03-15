@@ -2,10 +2,12 @@ CREATE TABLE users (
     id int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
     email varchar(80) NOT NULL,
-    phone int DEFAULT NULL,
+    password varchar(80) NOT NULL,
+	type TINYINT NOT NULL,
+	phone varchar(13) DEFAULT NULL,
     age TINYINT DEFAULT NULL,
-    UNIQUE(id, email),
-    PRIMARY KEY id
+    CONSTRAINT Unique_Users UNIQUE (id, email),
+    PRIMARY KEY (id)
 )
 
 CREATE TABLE jobs (
@@ -19,4 +21,6 @@ CREATE TABLE jobs (
     max_exp int NOT NULL,
     PRIMARY KEY (id)
 )
-insert into jobs (title, description, company, location, salary_offered, min_exp, max_exp) values ('Software Enginner', 'Permanent Job', 'HCL', 'Gurgaon', 30000, 18, 27)
+
+insert into jobs (title, description, company, location, salary_offered, min_exp, max_exp)
+values ('Software Enginner', 'Permanent Job', 'HCL', 'Gurgaon', 30000, 18, 27)

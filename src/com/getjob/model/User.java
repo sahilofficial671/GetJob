@@ -2,34 +2,36 @@ package com.getjob.model;
 
 public class User {
 	Integer id;
-	String name, email, password;
-	Integer phone, age;
+	String name, email, password, phone;
+	Integer age, type;
 	public User() {
 		
 	}
 	// with Id
-	public User(Integer id, String name, String email, String password, Integer phone, Integer age) {
+	public User(Integer id, String name, String email, String password, Integer type, String phone, Integer age) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
+		this.type = type;
 		this.age = age;
 	}
 	// without id
-	public User(String name, String email, String password, Integer phone, Integer age) {
+	public User(String name, String email, String password, Integer type, String phone, Integer age) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.type = type;
 		this.phone = phone;
 		this.age = age;
 	}
 	
 	// without password
-	public User(Integer id, String name, String email, Integer phone, Integer age) {
+	public User(Integer id, String name, String email, Integer type, String phone, Integer age) {
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.type = type;
 		this.phone = phone;
 		this.age = age;
 	}
@@ -65,11 +67,19 @@ public class User {
 		this.password = password;
 	}
 
-	public Integer getPhone() {
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

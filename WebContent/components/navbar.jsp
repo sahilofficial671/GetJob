@@ -22,9 +22,12 @@
         </ul>
         <div class="d-flex right">
 	        <% if(request.getSession().getAttribute("logged") != null) { %>
+      	        <ul class="navbar-nav">
+        			<li class="nav-item"><a href="${pageContext.request.contextPath}/dashboard" class="nav-link active">Dashboard</a></li>
+      			</ul>
 	       		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			        <li class="nav-item dropdown">
-				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<c:out value="${sessionScope.user.name}"/>
 			          	</a>
 			          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

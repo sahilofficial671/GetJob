@@ -106,4 +106,9 @@ public class JobController implements JobDao {
 		}
 	}
 
+	@Override
+	public Boolean apply(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

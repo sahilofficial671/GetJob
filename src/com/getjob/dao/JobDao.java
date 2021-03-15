@@ -11,4 +11,5 @@ public interface JobDao {
 	Boolean delete(Integer id);
 	Job getJob(Integer id);
 	List<Job> getJobs();
+	Boolean apply(Integer userId);
 }
