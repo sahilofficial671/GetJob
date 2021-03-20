@@ -15,11 +15,11 @@
 								<form action="${pageContext.request.contextPath}/login/submit" method="post">
 								  <div class="mb-3">
 								    <label for="email" class="form-label">Email address</label>
-								    <input type="email" class="form-control" id="email" name="email">
+								    <input type="email" class="form-control" id="email" name="email" value="sahil@sahil.com">
 								  </div>
 								  <div class="mb-3">
 								    <label for="password" class="form-label">Password</label>
-								    <input type="password" class="form-control" id="password" name="password">
+								    <input type="password" class="form-control" id="password" name="password" value="sahil1234">
 								  </div>
 								  <button type="submit" class="btn btn-primary">Submit</button>
 								   <a href="${pageContext.request.contextPath}" class="btn btn-light">Cancel</a>

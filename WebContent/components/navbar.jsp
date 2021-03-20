@@ -31,7 +31,7 @@
 							<c:out value="${sessionScope.user.name}"/>
 			          	</a>
 			          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			            <li><a class="dropdown-item" href="#">Profile</a></li>
+			            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/job/applications">Manage Applications</a></li>
 			            <li><hr class="dropdown-divider"></li>
 				  		<li><a href="${pageContext.request.contextPath}/logout" class="dropdown-item">Logout</a></li>
 			          </ul>

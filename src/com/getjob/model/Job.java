@@ -26,6 +26,9 @@ public class Job {
 		this.minExp = min_exp;
 		this.maxExp = max_exp;
 	}
+	public Job() {
+		
+	}
 	public Integer getId() {
 		return id;
 	}

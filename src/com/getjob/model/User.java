@@ -1,12 +1,17 @@
 package com.getjob.model;
 
-public class User {
+public class User extends BaseUser {
 	Integer id;
 	String name, email, password, phone;
 	Integer age, type;
+	
+	public static Integer jobSeeker = 1;
+	public static Integer recruiter = 2;
+	
 	public User() {
 		
 	}
+	
 	// with Id
 	public User(Integer id, String name, String email, String password, Integer type, String phone, Integer age) {
 		this.id = id;
@@ -72,6 +77,7 @@ public class User {
 	}
 
 	public void setType(Integer type) {
+		super.type = type;
 		this.type = type;
 	}
 

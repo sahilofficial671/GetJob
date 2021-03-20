@@ -36,11 +36,7 @@ public class AppServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		if(request.getSession().getAttribute("logged") != null && (boolean) request.getSession().getAttribute("logged")) {
-//			response.sendRedirect("./dashboard");
-//			return ;
-//		}
 		request.setAttribute("jobs", jobController.getJobs());
-		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/job/list.jsp").forward(request, response);
 	}
 }

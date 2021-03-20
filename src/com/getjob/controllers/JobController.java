@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.getjob.dao.JobDao;
 import com.getjob.database.DBConnection;
 import com.getjob.model.Job;
+import com.getjob.model.JobApplication;
 
 
 public class JobController implements JobDao {
@@ -65,8 +68,29 @@ public class JobController implements JobDao {
 	
 	@Override
 	public Job getJob(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select id, title, description, company, location, salary_offered, min_exp, max_exp from jobs where id = "+id);
+			
+			Job job = new Job();
+			while(rs.next()) {
+				job.setId(rs.getInt(1));
+				job.setTitle(rs.getString(2));
+				job.setDescription(rs.getString(3));
+				job.setCompany(rs.getString(4));
+				job.setLocation(rs.getString(5));
+				job.setSalaryOffered(rs.getInt(6));
+				job.setMin_exp(rs.getInt(7));
+				job.setMax_exp(rs.getInt(8));
+			}
+
+			rs.close();
+			stmt.close();
+			return job;
+		} catch (Exception e) {
+			System.out.println("Error from: " + this.getClass().getSimpleName() + ", Message: "+ e.getMessage());
+			return null;
+		}
 	}
 	
 	@Override
@@ -107,8 +131,78 @@ public class JobController implements JobDao {
 	}
 
 	@Override
-	public Boolean apply(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean apply(Integer jobId, Integer userId) {
+		try {
+		    Date utilDate = new Date();
+			Timestamp sqlTS = new Timestamp(utilDate.getTime());
+			
+			pstmt = con.prepareStatement("insert into job_users (jobId, userId, appliedAt, status) values (?, ?, ?, ?)");
+			pstmt.setInt(1, jobId);
+			pstmt.setInt(2, userId);
+			pstmt.setTimestamp(3, sqlTS);
+			pstmt.setBoolean(4, true);
+
+			Boolean status = pstmt.executeUpdate() == 1;
+			pstmt.close();
+			return status;
+			
+		} catch (Exception e) {
+			System.out.println("Error from: " + this.getClass().getSimpleName() + ", Message: "+ e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean checkIfAppliedBefore(Integer jobId, Integer userId) {
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select count(*) from job_users where jobId = "+jobId+" And userId = "+userId);
+			if (rs.isBeforeFirst() && rs.next() && rs.isFirst() && rs.isLast() && rs.getInt(1) == 1) {
+				return true;
+			}
+			rs.close();
+			stmt.close();
+			return false;
+		} catch (Exception e) {
+			System.out.println("Error from: " + this.getClass().getSimpleName() + ", Message: "+ e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public List<JobApplication> getApplicationsByUser(Integer userId) {
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select id, jobId, userId, appliedAt, status from job_users where userId = "+userId);
+			List<JobApplication> applications = new ArrayList<>();
+			
+			while(rs.next()) {
+				JobApplication jobApplication = new JobApplication();
+				jobApplication.setId(rs.getInt(1));
+				jobApplication.setJobId(rs.getInt(2));
+				jobApplication.setUserId(rs.getInt(3));
+				jobApplication.setAppliedAt(rs.getTimestamp(4));
+				jobApplication.setStatus(rs.getBoolean(5));
+				applications.add(jobApplication);
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			// Bind Job
+			for(JobApplication application : applications) {
+				application.setJob(getJob(application.getJobId()));;
+			}
+			
+			// Bind User
+			for(JobApplication application : applications) {
+				application.setJob(getJob(application.getUserId()));
+			}
+			
+			return applications;
+		} catch (Exception e) {
+			System.out.println("Error from: " + this.getClass().getSimpleName() + ", Message: "+ e.getMessage());
+			return null;
+		}
 	}
 }

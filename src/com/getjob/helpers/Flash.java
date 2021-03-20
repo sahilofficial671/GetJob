@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Flash {
 	public static String error_fill_all_fields = "Fill all the mandatory fields (*).";
+	public static String code_403 =  "403 | Unanuthorized Access.";
 	public static void success(HttpServletRequest request, String message) {
 		request.getSession().setAttribute("status", "success");
 		request.getSession().setAttribute("message", message);

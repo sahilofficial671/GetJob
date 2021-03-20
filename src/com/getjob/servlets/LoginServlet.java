@@ -17,22 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.getjob.controllers.UserController;
 import com.getjob.database.DBConnection;
+import com.getjob.helpers.Flash;
 
 /**
  * Servlet implementation class LoginController
  */
 @WebServlet("/login/submit")
 public class LoginServlet extends HttpServlet {
-	private Statement stmt = null;
-	private ResultSet rs = null;
-	private PreparedStatement pstmt = null;
-	private Connection con = null;
 	private static final long serialVersionUID = 1L;
 	private UserController userController; 
        
     public LoginServlet() {
 		try {
-			con = DBConnection.getConnection();
 			userController = new UserController();
 		} catch (Exception e) {
 			System.out.println("Error from: " + this.getClass().getSimpleName() + ", Message: "+ e.getMessage());
@@ -47,11 +43,9 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect(redirect_to);
 				return ;
 			}
-			
-			response.sendRedirect(request.getContextPath()+"/dashboard");
-		}else {
-			response.sendRedirect("../");
-		}	
+		}
+		
+		response.sendRedirect(request.getContextPath());
 	}
 	protected Boolean login(HttpServletRequest request) 
 	{
@@ -59,26 +53,16 @@ public class LoginServlet extends HttpServlet {
 			// Validate
 			if(userController.validateLogin(request)) {
 				Boolean status = false;
-				Boolean logged = null;
-				String message = "";
-				String alert_status = "";
 				
 				// Login
 				if(userController.authenticate(request)) {
-					logged = status = true;
-					alert_status = "success";
-					message = "You have logged in.";
+					status = true;
+					Flash.success(request, "You have logged in.");
 				}else {
-					status = false;
-					status = false;
-					alert_status = "error";
-					message = "Email & Password don't match out records.";
+					Flash.error(request, "Email & Password don't match out records.");
 				}
 				
-				request.getSession().setAttribute("status", alert_status);
-				request.getSession().setAttribute("logged", logged);
-				request.getSession().setAttribute("message", message);
-
+				request.getSession().setAttribute("logged", status);
 				return status;
 			}
 			
