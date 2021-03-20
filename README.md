@@ -1,8 +1,13 @@
 # GetJob
 
  + Features: 
-   - User Login/Logout
-   - User Register
-   - Recruiter - Add Job
-   - Recruiter - View Jobs
-   - Recruiter - Delete Job
+   - JobSeeker/Recruiter
+      - Registration
+      - Login & Logout
+   - Job Seeker - 
+     - Apply to Jobs
+     - Manage Job Applications
+   - Recruiter
+     - Add Job
+     - View Jobs
+     - Delete Job
